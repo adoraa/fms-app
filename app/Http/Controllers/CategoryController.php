@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+//use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -15,6 +16,8 @@ class CategoryController extends Controller
     public function index()
     {
         //
+        $categories = Category::orderBy('name')->get();
+        return view('admin.categories', compact('categories'));
     }
 
     /**
@@ -25,6 +28,7 @@ class CategoryController extends Controller
     public function create()
     {
         //
+        return view('admin.create_category');
     }
 
     /**
@@ -36,6 +40,11 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+        Category::create(request()->Validate([
+            'name' => ['required', 'unique:categories,name']
+        ]));
+        session()->flash('success', 'Category created successfully');
+        return redirect()->route('category.index');
     }
 
     /**
@@ -47,6 +56,7 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         //
+
     }
 
     /**
@@ -58,6 +68,7 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         //
+        return view('admin.edit_category', compact('category'));
     }
 
     /**

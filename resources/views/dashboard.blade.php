@@ -1,17 +1,60 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+@extends('layouts.portal')
+@section('content')
+<div class="container-fluid content-top-gap">
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    You're logged in!
-                </div>
-            </div>
-        </div>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb my-breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+      </ol>
+    </nav>
+    <div class="welcome-msg pt-3 pb-4">
+      <h1>Hi <span class="text-primary">{{ Auth::user()->firstname }}</span>, Welcome back</h1>
+      <p>Very detailed & featured admin.</p>
     </div>
-</x-app-layout>
+
+    <!-- statistics data -->
+    <div class="statistics">
+      <div class="row">
+        <div class="col-xl-6 pr-xl-2">
+          <div class="row">
+            <div class="col-sm-6 pr-sm-2 statistics-grid">
+              <div class="card card_border border-primary-top p-4">
+                <i class="lnr lnr-users"> </i>
+                <h3 class="text-primary number">{{ $num_facilities }}</h3>
+                <p class="stat-text"><a href="{{ route('facility.index') }}">Total Facilities</a> </p>
+              </div>
+            </div>
+            <div class="col-sm-6 pl-sm-2 statistics-grid">
+              <div class="card card_border border-primary-top p-4">
+                <i class="lnr lnr-eye"> </i>
+                <h3 class="text-secondary number">51.25 K</h3>
+                <p class="stat-text">Daily Visitors</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 pl-xl-2">
+          <div class="row">
+            <div class="col-sm-6 pr-sm-2 statistics-grid">
+              <div class="card card_border border-primary-top p-4">
+                <i class="lnr lnr-cloud-download"> </i>
+                <h3 class="text-success number">166.89 M</h3>
+                <p class="stat-text">Downloads</p>
+              </div>
+            </div>
+            <div class="col-sm-6 pl-sm-2 statistics-grid">
+              <div class="card card_border border-primary-top p-4">
+                <i class="lnr lnr-cart"> </i>
+                <h3 class="text-danger number">1,250k</h3>
+                <p class="stat-text">Purchased</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //statistics data -->
+
+  </div>
+  @endsection

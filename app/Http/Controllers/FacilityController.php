@@ -15,6 +15,9 @@ class FacilityController extends Controller
     public function index()
     {
         //
+        $facilities = Facility::orderBy('name')->get();
+        return view('admin.facilities', compact('facilities'));
+        
     }
 
     /**
@@ -25,6 +28,7 @@ class FacilityController extends Controller
     public function create()
     {
         //
+        return view('admin.create_facility');
     }
 
     /**
@@ -36,6 +40,11 @@ class FacilityController extends Controller
     public function store(Request $request)
     {
         //
+        Facility::create(request()->validate([
+            'name' => ['required', 'unique:facilities,name']
+        ]));
+        session()->flash('success', 'Facility created successfully');
+        return redirect()->route('facility.index');
     }
 
     /**
@@ -47,6 +56,7 @@ class FacilityController extends Controller
     public function show(Facility $facility)
     {
         //
+        
     }
 
     /**
@@ -58,6 +68,7 @@ class FacilityController extends Controller
     public function edit(Facility $facility)
     {
         //
+        return view('admin.edit_facility', compact('facility'));
     }
 
     /**
@@ -70,6 +81,15 @@ class FacilityController extends Controller
     public function update(Request $request, Facility $facility)
     {
         //
+        request()->validate([
+            'name' => ['required', 'unique:facilities,name']
+        ]);
+
+        $facility->name = $request->name;
+        $facility->save();
+
+        session()->flash('success', 'Facility updated successfully');
+        return redirect()->route('facility.index');
     }
 
     /**
@@ -81,5 +101,9 @@ class FacilityController extends Controller
     public function destroy(Facility $facility)
     {
         //
+        $facility->delete();
+        session()->flash('success', $facility->name.' has been deleted successfully');
+        return back();
+
     }
 }
