@@ -40,7 +40,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
-        Category::create(request()->Validate([
+        Category::create(request()->validate([
             'name' => ['required', 'unique:categories,name']
         ]));
         session()->flash('success', 'Category created successfully');
@@ -81,6 +81,15 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         //
+        request()->validate([
+            'name' => ['required', 'unique:categories,name'] 
+        ]);
+
+        $category->name = $request->name;
+        $category->save();
+
+        session()->flash('success', 'Category updated successfully');
+        return redirect()->route('category.index');
     }
 
     /**
@@ -92,5 +101,8 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         //
+        $category->delete();
+        session()->flash('success', $category->name.' has been deleted successfully');
+        return back();
     }
 }

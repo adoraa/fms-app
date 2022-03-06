@@ -47,6 +47,8 @@
       <ul class="nav nav-pills nav-stacked custom-nav">
         <li><a href="{{ route('dashboard') }}"><i class="fa fa-tachometer"></i><span> Dashboard</span></a>
         </li>
+
+        <!--Manage Facilities-->
         <li class="menu-list">
           <a href="#"><i class="fa fa-cogs"></i>
             <span>Manage Facilities <i class="lnr lnr-chevron-right"></i></span></a>
@@ -56,6 +58,7 @@
           </ul>
         </li>
 
+        <!--Manage Categories-->
         <li class="menu-list">
           <a href="#"><i class="fa fa-cogs"></i>
             <span>Manage Categories <i class="lnr lnr-chevron-right"></i></span></a>
@@ -64,6 +67,24 @@
           </ul>
         </li>
         
+        <!--Manage Roles-->
+        <li class="menu-list">
+          <a href="#"><i class="fa fa-cogs"></i>
+            <span>Manage Roles <i class="lnr lnr-chevron-right"></i></span></a>
+          <ul class="sub-menu-list">
+            <li><a href="{{ route('role.create') }}">Add Role</a></li>
+          </ul>
+        </li>
+
+        <!--Manage Utilities-->
+        <li class="menu-list">
+          <a href="#"><i class="fa fa-cogs"></i>
+            <span>Manage Utilities <i class="lnr lnr-chevron-right"></i></span></a>
+          <ul class="sub-menu-list">
+            <li><a href="{{ route('utility.create') }}">Add Utility</a></li>
+          </ul>
+        </li>
+
       </ul>
       <!-- //sidebar nav end -->
       <!-- toggle button start -->

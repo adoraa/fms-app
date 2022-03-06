@@ -27,4 +27,10 @@ Route::resource('facility', 'App\Http\Controllers\FacilityController');
 Route::resource('category', 'App\Http\Controllers\CategoryController');
 
 
+Route::resource('role', 'App\Http\Controllers\RoleController');
+
+Route::resource('utility', 'App\Http\Controllers\UtilityController');
+
+
+
 require __DIR__.'/auth.php';

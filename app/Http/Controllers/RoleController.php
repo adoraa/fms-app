@@ -15,6 +15,8 @@ class RoleController extends Controller
     public function index()
     {
         //
+        $roles = Role::orderBy('title')->get();
+        return view('admin.roles', compact('roles'));
     }
 
     /**
@@ -25,6 +27,7 @@ class RoleController extends Controller
     public function create()
     {
         //
+        return view('admin.create_role');
     }
 
     /**
@@ -36,6 +39,11 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         //
+        Role::create(request()->validate([
+            'title' => ['required', 'unique:roles,title']
+        ]));
+        session()->flash('success', 'Role created successfully');
+        return redirect()->route('role.index');
     }
 
     /**

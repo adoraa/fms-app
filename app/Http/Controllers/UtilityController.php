@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Utility;
+use App\Models\Facility;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class UtilityController extends Controller
@@ -25,6 +27,10 @@ class UtilityController extends Controller
     public function create()
     {
         //
+        $facilities = Facility::orderBy('name')->get();
+        $categories = Category::orderBy('name')->get();
+
+        return view('admin.create_utility', compact(['facilities', 'categories']));
     }
 
     /**
