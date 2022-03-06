@@ -85,6 +85,15 @@
           </ul>
         </li>
 
+        <!--Manage Materials-->
+        <li class="menu-list">
+          <a href="#"><i class="fa fa-cogs"></i>
+            <span>Manage Materials <i class="lnr lnr-chevron-right"></i></span></a>
+          <ul class="sub-menu-list">
+            <li><a href="{{ route('utility.create') }}">Add Material</a></li>
+          </ul>
+        </li>
+
       </ul>
       <!-- //sidebar nav end -->
       <!-- toggle button start -->

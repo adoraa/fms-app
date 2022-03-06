@@ -35,7 +35,7 @@
                             
                             <td>{{ $facility->name }}</td>
                             <td><a href="{{ route('facility.edit', $facility->id) }}">Edit</a></td>
-                            <td><form action="{{ route('facility.destroy', $facility->id) }}" method="post">@method('delete') @csrf <button type="submit" > <i class="material-icons">delete</i></i></button> </form></td>
+                            <td><form action="{{ route('facility.destroy', $facility->id) }}" method="post">@method('delete') @csrf <button type="submit" > <i class="material-icons">delete</i></button> </form></td>
                             
                         </tr>
                       @endforeach

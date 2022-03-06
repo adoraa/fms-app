@@ -19,16 +19,17 @@
             </div>
             <div class="card-body">
                 @include('includes.errors')
-                <form action="{{ route('role.store') }}" method="post">
+                <form action="{{ route('role.update', $role->id) }}" method="post">
+                    @method('put')
                     @csrf
                     <div class="form-group">
                         <label for="title" class="input__label">Name of Role</label>
                         <input type="text" name="title" class="form-control input-style" id="name"
-                            placeholder="Enter Role Title" required>
+                            placeholder="Enter Role Title" required value="{{ $role->title }}">
                         
                     </div>
                    
-                    <button type="submit" class="btn btn-primary btn-style mt-4">Submit</button>
+                    <button type="submit" class="btn btn-primary btn-style mt-4">Update Role</button>
                 </form>
             </div>
         </div>

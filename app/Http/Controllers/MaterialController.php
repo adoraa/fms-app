@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Material;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class MaterialController extends Controller
@@ -15,6 +16,8 @@ class MaterialController extends Controller
     public function index()
     {
         //
+        $materials = Material::orderBy('name')->get();
+        return view('admin.materials', compact('materials'));
     }
 
     /**
@@ -25,6 +28,7 @@ class MaterialController extends Controller
     public function create()
     {
         //
+        return view('admin.create_material');
     }
 
     /**
@@ -36,6 +40,11 @@ class MaterialController extends Controller
     public function store(Request $request)
     {
         //
+        Role::create(request()->validate([
+            'name' => ['required', 'unique:materials,name']
+        ]));
+        session()->flash('success', 'Material added successfully');
+        return redirect()->route('material.index');
     }
 
     /**
