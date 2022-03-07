@@ -27,25 +27,31 @@
                             placeholder="Enter Utility Name" required>
                         
                     </div>
-                    <div class="form-group col-md-4">
-                        <label for="inputFacility" class="input__label">State</label>
-                        <select id="inputFacility" class="form-control input-style" name="facility_id">
-                            <option selected>Facility: </option>
-                            @foreach ($facilities as $facility)
-                                <option value="{{ $facility->id }}">{{ $facility->name }}</option>
-                            @endforeach
-                            
-                        </select>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="inputCategory" class="input__label">Category: </label>
-                        <select id="inputCategory" class="form-control input-style" name="category_id">
-                            <option selected>Choose Category</option>
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>    
-                            @endforeach
-                            
-                        </select>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group col-md-4">
+                                <label for="inputFacility" class="input__label">State</label>
+                                <select id="inputFacility" class="form-control input-style" name="facility_id">
+                                    <option selected>Facility: </option>
+                                    @foreach ($facilities as $facility)
+                                        <option value="{{ $facility->id }}">{{ $facility->name }}</option>
+                                    @endforeach
+                                    
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group col-md-4">
+                                <label for="inputCategory" class="input__label">Category: </label>
+                                <select id="inputCategory" class="form-control input-style" name="category_id">
+                                    <option selected>Choose Category</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>    
+                                    @endforeach
+                                    
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-style mt-4">Submit</button>
                 </form>

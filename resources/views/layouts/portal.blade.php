@@ -90,7 +90,7 @@
           <a href="#"><i class="fa fa-cogs"></i>
             <span>Manage Materials <i class="lnr lnr-chevron-right"></i></span></a>
           <ul class="sub-menu-list">
-            <li><a href="{{ route('utility.create') }}">Add Material</a></li>
+            <li><a href="{{ route('material.create') }}">Add Material</a></li>
           </ul>
         </li>
 
