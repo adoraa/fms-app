@@ -10,7 +10,7 @@
     </nav>
     <div class="welcome-msg pt-3 pb-4">
       <h1>Hi <span class="text-primary">{{ Auth::user()->firstname }}</span>, Welcome back</h1>
-      <p>Very detailed & featured admin.</p>
+      <p>{{ Auth::user()->role->title }}</p> <!--User's role-->
     </div>
 
     <!-- statistics data -->
@@ -20,16 +20,16 @@
           <div class="row">
             <div class="col-sm-6 pr-sm-2 statistics-grid">
               <div class="card card_border border-primary-top p-4">
-                <i class="lnr lnr-users"> </i>
+                <i class="lnr lnr-apartment"> </i>
                 <h3 class="text-primary number">{{ $num_facilities }}</h3>
-                <p class="stat-text"><a href="{{ route('facility.index') }}">Total Facilities</a> </p>
+                <p class="stat-text"><a href="{{ route('facility.index') }}">Facilities</a> </p>
               </div>
             </div>
             <div class="col-sm-6 pl-sm-2 statistics-grid">
               <div class="card card_border border-primary-top p-4">
-                <i class="lnr lnr-eye"> </i>
-                <h3 class="text-secondary number">51.25 K</h3>
-                <p class="stat-text">Daily Visitors</p>
+                <i class="lnr lnr-users"> </i>
+                <h3 class="text-secondary number">{{ $num_roles }}</h3>
+                <p class="stat-text"><a href="{{ route('role.index') }}">Roles</a></p>
               </div>
             </div>
           </div>
@@ -38,16 +38,16 @@
           <div class="row">
             <div class="col-sm-6 pr-sm-2 statistics-grid">
               <div class="card card_border border-primary-top p-4">
-                <i class="lnr lnr-cloud-download"> </i>
-                <h3 class="text-success number">166.89 M</h3>
-                <p class="stat-text">Downloads</p>
+                <i class="lnr lnr-layers"> </i>
+                <h3 class="text-success number">{{ $num_categories }}</h3>
+                <p class="stat-text"><a href="{{ route('category.index') }}">Categories</a></p>
               </div>
             </div>
             <div class="col-sm-6 pl-sm-2 statistics-grid">
               <div class="card card_border border-primary-top p-4">
-                <i class="lnr lnr-cart"> </i>
-                <h3 class="text-danger number">1,250k</h3>
-                <p class="stat-text">Purchased</p>
+                <i class="lnr lnr-inbox"> </i>
+                <h3 class="text-danger number">{{ $num_complaints }}</h3>
+                <p class="stat-text"><a href="{{ route('complaint.index') }}">Complaints</a></p>
               </div>
             </div>
           </div>

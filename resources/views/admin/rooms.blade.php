@@ -7,7 +7,7 @@
     <nav aria-label="breadcrumb" class="mb-4">
         <ol class="breadcrumb my-breadcrumb">
             <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Create Role</li>
+            <li class="breadcrumb-item active" aria-current="page">Add Room</li>
         </ol>
     </nav>
     <!-- //breadcrumbs -->
@@ -19,24 +19,31 @@
         <div class="row">
           <div class="col-lg-12 mb-4">
             <div class="card card_border p-4">
-              <h3 class="card__title position-absolute">All Roles</h3>
+              <h3 class="card__title position-absolute">All Rooms</h3>
               @include('includes.errors')
               <div class="table-responsive">
                 <table id="example" class="display" style="width:100%">
                   <thead>
                     <tr>
-                      <th>Role</th>
+                      <th>Room</th>
+                      <th>Location</th>
+                      <th>Head of Room</th>
                       <th>Edit</th>
                       <th>Delete</th>
+                      
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($roles as $role)
+                    @foreach ($rooms as $room)
                       <tr>
                           
-                          <td>{{ $role->title }}</td>
-                          <td><a href="{{ route('role.edit', $role->id) }}">Edit</a></td>
-                          <td><form action="{{ route('role.destroy', $role->id) }}" method="POST">@method('delete') @csrf <button type="submit"> <i class="material-icons">delete</i></button></form></td>
+                          <td>{{ $room->name }}</td>
+                          <td>{{ $room->facility->name }}</td>
+                          @if (isset($room->head_of_room))
+                            <td>{{ $room->head_of_room->surname }}, {{ $room->head_of_room->firstname }}</td>
+                          @endif
+                          <td><a href="{{ route('room.edit', $room->id) }}">Edit</a></td>
+                          <td><form action="{{ route('room.destroy', $room->id) }}" method="POST">@method('delete') @csrf <button type="submit"> <i class="material-icons">delete</i></button></form></td>
                     
                       </tr>
                     @endforeach

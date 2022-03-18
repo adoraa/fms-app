@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>Collective Admin Panel a Flat Bootstrap Responsive Website Template | Blank Page </title>
+  <title>Babcock University Facilities Management System | Home </title>
 
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{ asset('css/style-liberty.css') }}">
@@ -15,6 +15,9 @@
   <!-- google fonts -->
   <link href="//fonts.googleapis.com/css?family=Nunito:300,400,600,700,800,900&display=swap" rel="stylesheet">
 </head>
+
+    <!-- material icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons"rel="stylesheet">
 
 <body class="sidebar-menu-collapsed">
   <div class="se-pre-con"></div>
@@ -37,7 +40,7 @@
     <!-- //image logo -->
 
     <div class="logo-icon text-center">
-      <a href="index.html" title="logo"><img src="assets/images/logo.png" alt="logo-icon"> </a>
+      <a href="index.html" title="logo"><img src="{{ asset('images/logo.png') }}" alt="logo-icon"> </a>
     </div>
     <!-- //logo end -->
 
@@ -48,52 +51,111 @@
         <li><a href="{{ route('dashboard') }}"><i class="fa fa-tachometer"></i><span> Dashboard</span></a>
         </li>
 
+        <!-- chack if user can crud facilities -->
+        @can('create', App\Models\Facility::class)
         <!--Manage Facilities-->
         <li class="menu-list">
-          <a href="#"><i class="fa fa-cogs"></i>
-            <span>Manage Facilities <i class="lnr lnr-chevron-right"></i></span></a>
+          <a href="#"><i class="fa fa-building"></i>
+            <span>Facilities <i class="lnr lnr-chevron-right"></i></span></a>
           <ul class="sub-menu-list">
+            <li><a href="{{ route('facility.index') }}">Manage Facilities</a></li>
             <li><a href="{{ route('facility.create') }}">Add Facility</a> </li>
-            <li><a href="people.html">People cards</a></li>
           </ul>
         </li>
+        @endcan
 
-        <!--Manage Categories-->
-        <li class="menu-list">
-          <a href="#"><i class="fa fa-cogs"></i>
-            <span>Manage Categories <i class="lnr lnr-chevron-right"></i></span></a>
-          <ul class="sub-menu-list">
-            <li><a href="{{ route('category.create') }}">Add Category</a> </li>
-          </ul>
-        </li>
-        
+        <!-- check if user can crud roles -->
+        @can('create', App\Models\Role::class)
         <!--Manage Roles-->
         <li class="menu-list">
-          <a href="#"><i class="fa fa-cogs"></i>
-            <span>Manage Roles <i class="lnr lnr-chevron-right"></i></span></a>
+          <a href="#"><i class="fa fa-users"></i>
+            <span>Roles <i class="lnr lnr-chevron-right"></i></span></a>
           <ul class="sub-menu-list">
+            <li><a href="{{ route('role.index') }}">Manage Roles</a></li>
             <li><a href="{{ route('role.create') }}">Add Role</a></li>
           </ul>
         </li>
+        @endcan
+        
+        <!-- checking if user can create categories -->
+        @can('create', App\Models\Category::class)
+          <!--Manage Categories-->
+        <li class="menu-list">
+          <a href="#"><i class="fa fa-clone"></i>
+            <span>Categories <i class="lnr lnr-chevron-right"></i></span></a>
+          <ul class="sub-menu-list">
+            <li><a href="{{ route('category.index') }}">Manage Categories</a></li>
+            <li><a href="{{ route('category.create') }}">Add Category</a> </li>
+          </ul>
+        </li>
+          
+        @endcan
 
+        <!-- check if user can crud utilities -->
+        @can('create', App\Models\Utility::class)
         <!--Manage Utilities-->
         <li class="menu-list">
-          <a href="#"><i class="fa fa-cogs"></i>
-            <span>Manage Utilities <i class="lnr lnr-chevron-right"></i></span></a>
+          <a href="#"><i class="fa fa-wrench"></i>
+            <span>Utilities <i class="lnr lnr-chevron-right"></i></span></a>
           <ul class="sub-menu-list">
+            <li><a href="{{ route('utility.index') }}">Manage Utilities</a></li>
             <li><a href="{{ route('utility.create') }}">Add Utility</a></li>
           </ul>
         </li>
+        @endcan
 
+        <!-- check if user can crud materials -->
+        @can('create', App\Models\Material::class)
         <!--Manage Materials-->
         <li class="menu-list">
-          <a href="#"><i class="fa fa-cogs"></i>
-            <span>Manage Materials <i class="lnr lnr-chevron-right"></i></span></a>
+          <a href="#"><i class="fa fa-lightbulb-o"></i>
+            <span>Materials <i class="lnr lnr-chevron-right"></i></span></a>
           <ul class="sub-menu-list">
+            <li><a href="{{ route('material.index') }}">Manage Materials</a></li>
             <li><a href="{{ route('material.create') }}">Add Material</a></li>
           </ul>
         </li>
+        @endcan
 
+        <!-- check if user can crud units -->
+        @can('create', App\Models\Unit::class)
+        <!--Manage Units-->
+        <li class="menu-list">
+          <a href="#"><i class="fa fa-th"></i>
+            <span>Units <i class="lnr lnr-chevron-right"></i></span></a>
+          <ul class="sub-menu-list">
+            <li><a href="{{ route('unit.index') }}">Manage Units</a></li>
+            <li><a href="{{ route('unit.create') }}">Add Unit</a></li>
+          </ul>
+        </li>
+        @endcan
+
+        <!-- check if user can crud rooms -->
+        @can('create', App\Models\Room::class)
+        <!--Manage Rooms-->
+        <li class="menu-list">
+          <a href="#"><i class="fa fa-columns"></i>
+            <span>Rooms <i class="lnr lnr-chevron-right"></i></span></a>
+          <ul class="sub-menu-list">
+            <li><a href="{{ route('room.index') }}">Manage Rooms</a></li>
+            <li><a href="{{ route('room.create') }}">Add Room</a></li>
+          </ul>
+        </li>
+        @endcan
+
+        <!-- check if user can crud complaints-->
+        @can('create', App\Models\Complaint::class)
+        <!--Manage Complaints-->
+        <li class="menu-list">
+          <a href="#"><i class="fa fa-edit"></i>
+            <span>Complaint <i class="lnr lnr-chevron-right"></i></span></a>
+          <ul class="sub-menu-list">
+            <li><a href="{{ route('complaint.index') }}">Manage Complains</a></li>
+            <li><a href="{{ route('complaint.create') }}">New report</a></li>
+          </ul>
+        </li>
+        @endcan
+       
       </ul>
       <!-- //sidebar nav end -->
       <!-- toggle button start -->
@@ -217,14 +279,18 @@
                 </a>
                 <ul class="dropdown-menu drp-mnu" aria-labelledby="dropdownMenu3">
                   <li class="user-info">
-                    <h5 class="user-name">John Deo</h5>
-                    <span class="status ml-2">Available</span>
+                    <h5 class="user-name">{{ Auth::user()->firstname }} {{ Auth::user()->surname }}</h5>
+                    <span class="status ml-2">{{ Auth::user()->role->title }}</span>
                   </li>
                   <li> <a href="#"><i class="lnr lnr-user"></i>My Profile</a> </li>
                   <li> <a href="#"><i class="lnr lnr-users"></i>1k Followers</a> </li>
                   <li> <a href="#"><i class="lnr lnr-cog"></i>Setting</a> </li>
                   <li> <a href="#"><i class="lnr lnr-heart"></i>100 Likes</a> </li>
-                  <li class="logout"> <a href="#sign-up.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+                  <li class="logout"> <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" ><i class="fa fa-power-off"></i> Logout</a> </li>
+
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none">
+                    @csrf
+                  </form>
                 </ul>
               </li>
             </ul>
@@ -245,7 +311,7 @@
 </section>
   <!--footer section start-->
 <footer class="dashboard">
-  <p>&copy 2020 Collective. All Rights Reserved.</p>
+  <p>&copy 2022 BU Facility Management System. All Rights Reserved.</p>
 </footer>
 <!--footer section end-->
 <!-- move top -->

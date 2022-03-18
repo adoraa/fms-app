@@ -26,7 +26,9 @@
                   <thead>
                     <tr>
                       <th>Facility Name</th>
-                      <th></th>
+                      <th>Head of Facility</th>
+                      <th>Edit</th>
+                      <th>Delete</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -34,6 +36,11 @@
                         <tr>
                             
                             <td>{{ $facility->name }}</td>
+                            @if(isset($facility->head_of_facility))
+                              <td> {{ $facility->head_of_facility->surname }}, {{ $facility->head_of_facility->firstname }}</td>
+                            @else
+                              <td></td>
+                            @endif
                             <td><a href="{{ route('facility.edit', $facility->id) }}">Edit</a></td>
                             <td><form action="{{ route('facility.destroy', $facility->id) }}" method="post">@method('delete') @csrf <button type="submit" > <i class="material-icons">delete</i></button> </form></td>
                             

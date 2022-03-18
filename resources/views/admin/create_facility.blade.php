@@ -28,6 +28,17 @@
                         
                     </div>
                    
+                        <div class="form-group">
+                            <label for="inputHeadofFacility" class="input__label">Head of Facility</label>
+                            <select id="inputHeadofFacility" class="form-control input-style" name="user_id">
+                                <option selected>-- Select User -- </option>
+                                @foreach ($users as $user)
+                                    <option value="{{ $user->id }}">{{ $user->surname }}, {{ $user->firstname }}</option>
+                                @endforeach
+                                
+                            </select>
+                        </div>
+                  
                     <button type="submit" class="btn btn-primary btn-style mt-4">Submit</button>
                 </form>
             </div>

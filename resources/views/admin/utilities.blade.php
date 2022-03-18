@@ -7,7 +7,7 @@
     <nav aria-label="breadcrumb" class="mb-4">
         <ol class="breadcrumb my-breadcrumb">
             <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Create Role</li>
+            <li class="breadcrumb-item active" aria-current="page">Add Utility</li>
         </ol>
     </nav>
     <!-- //breadcrumbs -->
@@ -19,24 +19,29 @@
         <div class="row">
           <div class="col-lg-12 mb-4">
             <div class="card card_border p-4">
-              <h3 class="card__title position-absolute">All Roles</h3>
+              <h3 class="card__title position-absolute">All Utilities</h3>
               @include('includes.errors')
               <div class="table-responsive">
                 <table id="example" class="display" style="width:100%">
                   <thead>
                     <tr>
-                      <th>Role</th>
+                      <th>Utility</th>
+                      <th>Location</th>
+                      <th>Category</th>
                       <th>Edit</th>
                       <th>Delete</th>
+                      
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($roles as $role)
+                    @foreach ($utilities as $utility)
                       <tr>
                           
-                          <td>{{ $role->title }}</td>
-                          <td><a href="{{ route('role.edit', $role->id) }}">Edit</a></td>
-                          <td><form action="{{ route('role.destroy', $role->id) }}" method="POST">@method('delete') @csrf <button type="submit"> <i class="material-icons">delete</i></button></form></td>
+                          <td>{{ $utility->name }}</td>
+                          <td>{{ $utility->facility->name }}</td>
+                          <td>{{ $utility->category->name }}</td>
+                          <td><a href="{{ route('utility.edit', $utility->id) }}">Edit</a></td>
+                          <td><form action="{{ route('utility.destroy', $utility->id) }}" method="POST">@method('delete') @csrf <button type="submit"> <i class="material-icons">delete</i></button></form></td>
                     
                       </tr>
                     @endforeach

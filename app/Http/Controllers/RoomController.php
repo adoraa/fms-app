@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Room;
+use App\Models\User;
+use App\Models\Facility;
+
 use Illuminate\Http\Request;
 
 class RoomController extends Controller
@@ -15,6 +18,9 @@ class RoomController extends Controller
     public function index()
     {
         //
+
+        $rooms = Room::orderBy('name')->get();
+        return view('admin.rooms', compact('rooms'));
     }
 
     /**
@@ -25,6 +31,10 @@ class RoomController extends Controller
     public function create()
     {
         //
+        $facilities = Facility::orderBy('name')->get();
+        $users = User::orderBy('surname')->orderBy('firstname')->get();
+
+        return view('admin.create_room', compact(['facilities', 'users']));
     }
 
     /**
@@ -36,6 +46,13 @@ class RoomController extends Controller
     public function store(Request $request)
     {
         //
+        Room::create(request()->validate([
+            'name' => ['required'],
+            'facility_id' => ['required'],
+            'user_id' => ['required']
+        ]));
+        session()->flash('success', 'Room created successfully');
+        return redirect()->route('room.index');
     }
 
     /**
@@ -58,6 +75,9 @@ class RoomController extends Controller
     public function edit(Room $room)
     {
         //
+        $facilities = Facility::orderBy('name')->get();
+        $users = User::orderBy('surname')->orderBy('firstname')->get();
+        return view('admin.edit_room', compact(['room', 'facility', 'users']));
     }
 
     /**
@@ -70,6 +90,19 @@ class RoomController extends Controller
     public function update(Request $request, Room $room)
     {
         //
+        request()->validate([
+            'name' => ['required'],
+            'facility_id' => ['required'],
+            'user_id' => ['required']
+        ]);
+
+        $room->name = $request->name;
+        $room->facility_id = $request->facility_id;
+        $room->user_id = $request->user_id;
+        $room->save();
+
+        session()->flash('success', 'Room updated successfully');
+        return redirect()->route('room.index');
     }
 
     /**
@@ -81,5 +114,8 @@ class RoomController extends Controller
     public function destroy(Room $room)
     {
         //
+        $room->delete();
+        session()->flash('success', $room->name.' has been deleted successfully');
+        return back();
     }
 }

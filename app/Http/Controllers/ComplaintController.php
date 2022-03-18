@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Complaint;
 use Illuminate\Http\Request;
+use App\Models\Utility;
+use App\Models\Unit;
 
 class ComplaintController extends Controller
 {
@@ -15,6 +17,8 @@ class ComplaintController extends Controller
     public function index()
     {
         //
+        $complaints = Complaint::latest()->get();
+        return view('admin.complaints', compact('complaints'));
     }
 
     /**
@@ -25,6 +29,9 @@ class ComplaintController extends Controller
     public function create()
     {
         //
+        $utilities = Utility::orderBy('name')->get();
+        $units = Unit::orderBy('name')->get();
+        return view('admin.create_complaint', compact(['utilities', 'units']));
     }
 
     /**
@@ -36,6 +43,9 @@ class ComplaintController extends Controller
     public function store(Request $request)
     {
         //
+        Complaint::create(request()->validate([
+            ''
+        ]));
     }
 
     /**

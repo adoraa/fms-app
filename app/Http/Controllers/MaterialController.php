@@ -40,8 +40,9 @@ class MaterialController extends Controller
     public function store(Request $request)
     {
         //
-        Role::create(request()->validate([
-            'name' => ['required', 'unique:materials,name']
+        Material::create(request()->validate([
+            'name' => ['required', 'unique:materials,name'],
+            'quantity' => ['required', 'unique:materials,quantity']
         ]));
         session()->flash('success', 'Material added successfully');
         return redirect()->route('material.index');
@@ -67,6 +68,7 @@ class MaterialController extends Controller
     public function edit(Material $material)
     {
         //
+        return view('admin.edit_material', compact('material'));
     }
 
     /**
@@ -79,6 +81,17 @@ class MaterialController extends Controller
     public function update(Request $request, Material $material)
     {
         //
+        request()->validate([
+            'name' => ['required', 'unique:materials,name'],
+            'quantity' => ['required']
+        ]);
+
+        $material->name = $request->name;
+        $material->quantity = $request->quantity;
+        $material->save();
+
+        session()->flash('success', 'Material updated successfully');
+        return redirect()->route('material.index');
     }
 
     /**
@@ -90,5 +103,8 @@ class MaterialController extends Controller
     public function destroy(Material $material)
     {
         //
+        $material->delete();
+        session()->flash('success', $material->name.' has been deleted');
+        return back();
     }
 }

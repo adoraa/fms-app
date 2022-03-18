@@ -6,7 +6,7 @@
     <nav aria-label="breadcrumb" class="mb-4">
         <ol class="breadcrumb my-breadcrumb">
             <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Create Role</li>
+            <li class="breadcrumb-item active" aria-current="page">Edit Role</li>
         </ol>
     </nav>
     <!-- //breadcrumbs -->
@@ -15,7 +15,7 @@
         <!-- forms 1 -->
         <div class="card card_border py-2 mb-4">
             <div class="cards__heading">
-                <h3>Create Role <span></span></h3>
+                <h3>Edit Role <span></span></h3>
             </div>
             <div class="card-body">
                 @include('includes.errors')

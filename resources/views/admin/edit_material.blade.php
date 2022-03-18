@@ -27,20 +27,19 @@
                             <div class="form-group">
                                 <label for="name" class="input__label">Name of Material</label>
                                 <input type="text" name="name" class="form-control input-style" id="name"
-                                    placeholder="Enter Material Name" required value="{{ $material->name }}">
-                                
-                            </div></div>
+                                    placeholder="Enter Material Name" required value="{{ $material->name }}">    
+                            </div>
+                        </div>
 
                         <div class="col">
                             <div class="form-group">
                                 <label for="quantity" class="input__label">Quantity</label>
                                 <input type="number" name="quantity" class="form-control input-style" id="quantity"
-                                    placeholder="Enter Material Name" required value="{{ $material->name }}">
-                                
-                            </div></div>
-                        
-                            <button type="submit" class="btn btn-primary btn-style mt-4">Update Material</button>
-                    </div>
+                                    placeholder="Quantity" required value="{{ $material->quantity }}"> 
+                            </div>
+                        </div>
+                    </div>    
+                    <button type="submit" class="btn btn-primary btn-style mt-4">Update Material</button>
                 </form>
             </div>
         </div>

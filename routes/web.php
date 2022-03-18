@@ -36,4 +36,13 @@ Route::resource('utility', 'App\Http\Controllers\UtilityController');
 Route::resource('material', 'App\Http\Controllers\MaterialController');
 
 
+Route::resource('unit', 'App\Http\Controllers\UnitController');
+
+
+Route::resource('room', 'App\Http\Controllers\RoomController');
+
+
+Route::resource('complaint', 'App\Http\Controllers\ComplaintController');
+
+
 require __DIR__.'/auth.php';

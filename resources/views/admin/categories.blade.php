@@ -26,7 +26,8 @@
                   <thead>
                     <tr>
                       <th>Category</th>
-                      <th></th>
+                      <th>Edit</th>
+                      <th>Delete</th>
                     </tr>
                   </thead>
                   <tbody>

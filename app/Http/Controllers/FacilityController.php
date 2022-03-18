@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Facility;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class FacilityController extends Controller
@@ -28,7 +29,8 @@ class FacilityController extends Controller
     public function create()
     {
         //
-        return view('admin.create_facility');
+        $users = User::orderBy('surname')->orderBy('firstname')->get();
+        return view('admin.create_facility', compact(['users']));
     }
 
     /**
@@ -41,7 +43,8 @@ class FacilityController extends Controller
     {
         //
         Facility::create(request()->validate([
-            'name' => ['required', 'unique:facilities,name']
+            'name' => ['required', 'unique:facilities,name'],
+            'user_id' => ['required']
         ]));
         session()->flash('success', 'Facility created successfully');
         return redirect()->route('facility.index');
@@ -68,7 +71,8 @@ class FacilityController extends Controller
     public function edit(Facility $facility)
     {
         //
-        return view('admin.edit_facility', compact('facility'));
+        $users = User::orderBy('surname')->orderBy('firstname')->get();
+        return view('admin.edit_facility', compact(['facility', 'users']));
     }
 
     /**
@@ -82,10 +86,12 @@ class FacilityController extends Controller
     {
         //
         request()->validate([
-            'name' => ['required', 'unique:facilities,name']
+            'name' => ['required'],
+            'user_id' => ['required']
         ]);
 
         $facility->name = $request->name;
+        $facility->user_id = $request->user_id;
         $facility->save();
 
         session()->flash('success', 'Facility updated successfully');

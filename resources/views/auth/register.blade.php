@@ -52,6 +52,18 @@
                                 name="password_confirmation" required />
             </div>
 
+            <!-- Role -->
+            <div class="mt-4">
+                <?php $roles = \App\Models\Role::all() ?>
+                <label for="role_id" class="input__label">Role</label>
+                <select id="role_id" class="form-control input-style" name="role_id">
+                    <option value="" selected disabled style="display:none">-- Select role --</option>
+                    @foreach ($roles as $role)
+                        <option value="{{ $role->id }}">{{ $role->title }}</option>
+                    @endforeach
+                </select>
+            </div>
+
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
                     {{ __('Already registered?') }}

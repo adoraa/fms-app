@@ -26,7 +26,9 @@
                         <thead>
                             <tr>
                                 <th>Material Name</th>
-                                <th></th>
+                                <th>Quantity</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>
