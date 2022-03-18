@@ -45,9 +45,7 @@
 
                     <div class="form-group">
                         <label for="description" class="input__label">Description</label>
-                        <textarea class="form-control input-style" id="description" rows="3" 
-                            placeholder="Description" required>
-                        </textarea>
+                        <textarea class="form-control input-style" id="description" rows="2" placeholder="Description" required> </textarea>
                       </div>
                     </form>
                    
