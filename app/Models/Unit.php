@@ -19,7 +19,7 @@ class Unit extends Model
         return $this->belongsTo('App\Models\Role', 'role_id', 'id');
     }
 
-    public function complaint(){
-        return $this->belongsTo('App\Models\Role', 'role_id', 'id');
+    public function complaints(){
+        return $this->hasMany('App\Models\Complaint', 'unit_id', 'id');
     }
 }

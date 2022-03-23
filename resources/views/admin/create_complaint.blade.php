@@ -41,13 +41,11 @@
                             @endforeach
                                     
                         </select>
-                    </div>
-
+                    </div> 
                     <div class="form-group">
                         <label for="description" class="input__label">Description</label>
-                        <textarea class="form-control input-style" id="description" rows="2" placeholder="Description" required> </textarea>
+                        <textarea class="form-control input-style" name="description" id="description" rows="2" placeholder="Description" required></textarea>
                       </div>
-                    </form>
                    
                     <button type="submit" class="btn btn-primary btn-style mt-4">Submit</button>
                 </form>

@@ -23,7 +23,7 @@ class Utility extends Model
         return $this->belongsTo('App\Models\Category');
     }
 
-    public function complaint(){
-        return $this->belongsTo('App\Models\Complaint');
+    public function complaints(){
+        return $this->hasMany('App\Models\Complaint');
     }
 }

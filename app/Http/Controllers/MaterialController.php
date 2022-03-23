@@ -42,7 +42,7 @@ class MaterialController extends Controller
         //
         Material::create(request()->validate([
             'name' => ['required', 'unique:materials,name'],
-            'quantity' => ['required', 'unique:materials,quantity']
+            'quantity' => ['required']
         ]));
         session()->flash('success', 'Material added successfully');
         return redirect()->route('material.index');
