@@ -26,4 +26,8 @@ class Role extends Model
     {
         return static::all()->pluck('id', 'title');
     }
+
+    public function unit(){
+        return $this->hasOne('App\Models\Unit');
+    }
 }

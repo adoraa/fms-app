@@ -126,6 +126,8 @@
           <ul class="sub-menu-list">
             <li><a href="{{ route('unit.index') }}">Manage Units</a></li>
             <li><a href="{{ route('unit.create') }}">Add Unit</a></li>
+            <li><a href="{{ route('job.index') }}">Manage Jobs</a></li>
+            <li><a href="{{ route('job.create') }}">Add Job</a></li>
           </ul>
         </li>
         @endcan
@@ -150,10 +152,35 @@
           <a href="#"><i class="fa fa-edit"></i>
             <span>Complaint <i class="lnr lnr-chevron-right"></i></span></a>
           <ul class="sub-menu-list">
-            <li><a href="{{ route('complaint.index') }}">Manage Complains</a></li>
-            <li><a href="{{ route('complaint.create') }}">New report</a></li>
+            <li><a href="{{ route('my_complaint') }}">Manage my complaints</a></li>
+            <li><a href="{{ route('complaint.create') }}">New complain</a></li>
           </ul>
         </li>
+        @endcan
+
+        <!-- check if user can crud complaints approval -->
+        @can('create', App\Models\Complaint::class)
+        <!-- Complaints Approval -->
+        <li class="active"><a href="{{ route('complaint.index') }}"><i class="fa fa-file-text"></i> <span>Complaint approval</span></a></li>
+        
+        @endcan
+
+        <!-- check if user can crud unit approval-->
+       
+        <!-- Complaints Approval -->
+        <li class="active"><a href="{{ route('unit_complaints') }}"><i class="fa fa-file-text"></i> <span>Unit Complaints</span></a></li>
+        
+        <!-- check if user can crud all complaints-->
+        @can('create', App\Models\Complaint::class)
+        <!-- Complaints Approval -->
+        <li class="active"><a href="{{ route('complaint.index') }}"><i class="fa fa-file-text"></i> <span>All Complaints</span></a></li>
+        
+        @endcan
+
+        <!-- check if user can crud assigned complaints-->
+        @can('create', App\Models\Complaint::class)
+        <!-- Complaints Approval -->
+        <li class="active"><a href="{{ route('complaint.index') }}"><i class="fa fa-file-text"></i> <span>Assigned complaints</span></a></li>
         @endcan
        
       </ul>
@@ -271,7 +298,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="dropdownMenu3" aria-haspopup="true"
                   aria-expanded="false">
                   <div class="profile_img">
-                    <img src="{{ asset('images/profileimg.png') }}" class="rounded-circle" alt="" />
+                    <img src="{{ asset('images/people1.png') }}" class="rounded-circle" alt="" />
                     <div class="user-active">
                       <span></span>
                     </div>
@@ -283,9 +310,6 @@
                     <span class="status ml-2">{{ Auth::user()->role->title }}</span>
                   </li>
                   <li> <a href="#"><i class="lnr lnr-user"></i>My Profile</a> </li>
-                  <li> <a href="#"><i class="lnr lnr-users"></i>1k Followers</a> </li>
-                  <li> <a href="#"><i class="lnr lnr-cog"></i>Setting</a> </li>
-                  <li> <a href="#"><i class="lnr lnr-heart"></i>100 Likes</a> </li>
                   <li class="logout"> <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" ><i class="fa fa-power-off"></i> Logout</a> </li>
 
                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none">

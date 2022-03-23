@@ -21,6 +21,13 @@ class ComplaintController extends Controller
         return view('admin.complaints', compact('complaints'));
     }
 
+    public function my_complaint()
+    {
+        //
+        $complaints = auth()->user()->complaints;
+        return view('admin.complaints', compact('complaints'));
+    }
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -117,5 +124,20 @@ class ComplaintController extends Controller
         $complaint->delete();
         session()->flash('sucess', 'Report deleted successfully');
         return back();
+    }
+
+    public function room_facility_complaints()
+    {
+        //
+        $complaints = auth()->user()->complaints;
+        return view('admin.complaints', compact('complaints'));
+    }
+
+    public function unit_complaints()
+    {
+        //
+        $complaints = auth()->user()->role->unit->complaints;
+        
+        return view('admin.complaints', compact('complaints'));
     }
 }

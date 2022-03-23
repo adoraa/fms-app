@@ -22,6 +22,17 @@
                 <form action="{{ route('complaint.store') }}" method="post">
                     @csrf
                     <div class="form-group">
+                        <label for="inputJob" class="input__label">Unit</label>
+                        <select id="inputJob" class="form-control input-style" name="job_id">
+                            <option selected>-- Select Nature of Job -- </option>
+                            @foreach ($jobs as $job)
+                                <option value="{{ $job->id }}">{{ $job->name }}</option>
+                            @endforeach
+                                    
+                        </select>
+                    </div>
+
+                    <div class="form-group">
                         <label for="utility_id" class="input__label">Utility</label>
                         <select id="utility_id" class="form-control input-style" name="utility_id">
                             <option selected>-- Select Utility -- </option>
@@ -31,17 +42,7 @@
                                     
                         </select>
                     </div>
-
-                    <div class="form-group">
-                        <label for="inputUnit" class="input__label">Unit</label>
-                        <select id="inputUnit" class="form-control input-style" name="unit_id">
-                            <option selected>-- Select Unit -- </option>
-                            @foreach ($units as $unit)
-                                <option value="{{ $unit->id }}">{{ $unit->name }}</option>
-                            @endforeach
-                                    
-                        </select>
-                    </div> 
+ 
                     <div class="form-group">
                         <label for="description" class="input__label">Description</label>
                         <textarea class="form-control input-style" name="description" id="description" rows="2" placeholder="Description" required></textarea>

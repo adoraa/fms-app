@@ -22,4 +22,8 @@ class Unit extends Model
     public function complaints(){
         return $this->hasMany('App\Models\Complaint', 'unit_id', 'id');
     }
+
+    public function jobs(){
+        return $this->hasMany('App\Models\Job', 'job_id', 'id');
+    }
 }
