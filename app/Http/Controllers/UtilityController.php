@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Utility;
+use App\Models\Facility;
+use App\Models\Category;
+use App\Models\Room;
+use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Http\Request;
 
 class UtilityController extends Controller
@@ -15,6 +19,8 @@ class UtilityController extends Controller
     public function index()
     {
         //
+        $utilities = Utility::orderBy('name')->get();
+        return view('admin.utilities', compact('utilities'));
     }
 
     /**
@@ -25,6 +31,11 @@ class UtilityController extends Controller
     public function create()
     {
         //
+        $facilities = Facility::orderBy('name')->get();
+        $categories = Category::orderBy('name')->get();
+        $rooms = Room::orderBy('name')->get();
+        
+        return view('admin.create_utility', compact(['facilities', 'categories', 'rooms']));
     }
 
     /**
@@ -36,6 +47,17 @@ class UtilityController extends Controller
     public function store(Request $request)
     {
         //
+        $utility = Utility::create(request()->validate([
+            'name' => ['required'],
+            'facility_id' => ['required'],
+            'category_id' => ['required'],
+        ]));
+        if ($request->room_id != null){
+            $utility->room_id = $request->room_id;
+            $utility->save();
+        }
+        session()->flash('sucess', 'Utility added successfully');
+        return redirect()->route('utility.index');
     }
 
     /**

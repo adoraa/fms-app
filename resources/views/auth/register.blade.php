@@ -12,11 +12,18 @@
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
-            <!-- Name -->
+            <!-- First name -->
             <div>
-                <x-label for="name" :value="__('Name')" />
+                <x-label for="firstname" :value="__('First name')" />
 
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                <x-input id="firstname" class="block mt-1 w-full" type="text" name="firstname" :value="old('firstname')" required autofocus />
+            </div>
+
+            <!-- Surname -->
+            <div>
+                <x-label for="surname" :value="__('Surname')" />
+
+                <x-input id="surname" class="block mt-1 w-full" type="text" name="surname" :value="old('surname')" required autofocus />
             </div>
 
             <!-- Email Address -->
@@ -43,6 +50,18 @@
                 <x-input id="password_confirmation" class="block mt-1 w-full"
                                 type="password"
                                 name="password_confirmation" required />
+            </div>
+
+            <!-- Role -->
+            <div class="mt-4">
+                <?php $roles = \App\Models\Role::all() ?>
+                <label for="role_id" class="input__label">Role</label>
+                <select id="role_id" class="form-control input-style" name="role_id">
+                    <option value="" selected disabled style="display:none">-- Select role --</option>
+                    @foreach ($roles as $role)
+                        <option value="{{ $role->id }}">{{ $role->title }}</option>
+                    @endforeach
+                </select>
             </div>
 
             <div class="flex items-center justify-end mt-4">

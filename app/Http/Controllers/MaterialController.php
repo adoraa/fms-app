@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Material;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class MaterialController extends Controller
@@ -15,6 +16,8 @@ class MaterialController extends Controller
     public function index()
     {
         //
+        $materials = Material::orderBy('name')->get();
+        return view('admin.materials', compact('materials'));
     }
 
     /**
@@ -25,6 +28,7 @@ class MaterialController extends Controller
     public function create()
     {
         //
+        return view('admin.create_material');
     }
 
     /**
@@ -36,6 +40,12 @@ class MaterialController extends Controller
     public function store(Request $request)
     {
         //
+        Material::create(request()->validate([
+            'name' => ['required', 'unique:materials,name'],
+            'quantity' => ['required']
+        ]));
+        session()->flash('success', 'Material added successfully');
+        return redirect()->route('material.index');
     }
 
     /**
@@ -58,6 +68,7 @@ class MaterialController extends Controller
     public function edit(Material $material)
     {
         //
+        return view('admin.edit_material', compact('material'));
     }
 
     /**
@@ -70,6 +81,17 @@ class MaterialController extends Controller
     public function update(Request $request, Material $material)
     {
         //
+        request()->validate([
+            'name' => ['required', 'unique:materials,name'],
+            'quantity' => ['required']
+        ]);
+
+        $material->name = $request->name;
+        $material->quantity = $request->quantity;
+        $material->save();
+
+        session()->flash('success', 'Material updated successfully');
+        return redirect()->route('material.index');
     }
 
     /**
@@ -81,5 +103,8 @@ class MaterialController extends Controller
     public function destroy(Material $material)
     {
         //
+        $material->delete();
+        session()->flash('success', $material->name.' has been deleted');
+        return back();
     }
 }
