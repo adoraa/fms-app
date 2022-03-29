@@ -23,7 +23,7 @@
                     @method('put')
                     @csrf
                     <div class="form-group">
-                        <label for="inputJob" class="input__label">Unit</label>
+                        <label for="inputJob" class="input__label">Nature of job</label>
                         <select id="inputJob" class="form-control input-style" name="job_id">
                             <option selected>-- Select Nature of Job -- </option>
                             @foreach ($jobs as $job)

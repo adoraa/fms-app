@@ -10,4 +10,8 @@ class Material extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function complaints(){
+        return $this->belongsToMany(Complaint::class, 'material_complaints', 'material_id', 'complaint_id');
+    }
 }

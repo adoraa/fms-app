@@ -7,12 +7,15 @@
     <nav aria-label="breadcrumb" class="mb-4">
         <ol class="breadcrumb my-breadcrumb">
             <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Add Room</li>
+            <li class="breadcrumb-item active" aria-current="page">All Rooms</li>
         </ol>
     </nav>
     <!-- //breadcrumbs -->
     <!-- forms -->
     <section class="forms">
+
+    <!-- click button -->
+    <a href="{{ route('room.create') }}" class="btn btn-primary">New</a><br/><br/>
 
     <!-- data tables -->
     <div class="data-tables">
@@ -41,6 +44,8 @@
                           <td>{{ $room->facility->name }}</td>
                           @if (isset($room->head_of_room))
                             <td>{{ $room->head_of_room->surname }}, {{ $room->head_of_room->firstname }}</td>
+                          @else
+                            <td></td>
                           @endif
                           <td><a href="{{ route('room.edit', $room->id) }}">Edit</a></td>
                           <td><form action="{{ route('room.destroy', $room->id) }}" method="POST">@method('delete') @csrf <button type="submit"> <i class="material-icons">delete</i></button></form></td>

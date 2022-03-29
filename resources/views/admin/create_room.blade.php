@@ -30,7 +30,7 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="inputFacility" class="input__label">State</label>
+                                <label for="inputFacility" class="input__label">Facility</label>
                                 <select id="inputFacility" class="form-control input-style" name="facility_id">
                                     <option selected>-- Facility -- </option>
                                     @foreach ($facilities as $facility)

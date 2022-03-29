@@ -29,11 +29,11 @@
                     </div>
                    
                         <div class="form-group">
-                            <label for="inputCorrespondingUnit" class="input__label">Corresponding Unit:</label>
-                            <select id="inputCorrespondingUnit" class="form-control input-style" name="unit_id">
+                            <label for="inputCorrespondingRole" class="input__label">Corresponding User Role:</label>
+                            <select id="inputCorrespondingRole" class="form-control input-style" name="role_id">
                                 <option>-- Select Corresponding Unit --</option>
-                                @foreach ($units as $unit)
-                                    <option value="{{ $unit->id }}">{{ $unit->name }} </option>
+                                @foreach ($roles as $role)
+                                    <option value="{{ $role->id }}">{{ $role->title }} </option>
                                 @endforeach
                                 
                             </select>

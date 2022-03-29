@@ -118,14 +118,12 @@
         @endcan
 
         <!-- check if user can crud units -->
-        @can('create', App\Models\Unit::class)
+        @can('create', App\Models\Job::class)
         <!--Manage Units-->
         <li class="menu-list">
           <a href="#"><i class="fa fa-th"></i>
-            <span>Units <i class="lnr lnr-chevron-right"></i></span></a>
+            <span>Jobs <i class="lnr lnr-chevron-right"></i></span></a>
           <ul class="sub-menu-list">
-            <li><a href="{{ route('unit.index') }}">Manage Units</a></li>
-            <li><a href="{{ route('unit.create') }}">Add Unit</a></li>
             <li><a href="{{ route('job.index') }}">Manage Jobs</a></li>
             <li><a href="{{ route('job.create') }}">Add Job</a></li>
           </ul>
@@ -145,42 +143,57 @@
         </li>
         @endcan
 
-        <!-- check if user can crud complaints-->
-        @can('create', App\Models\Complaint::class)
         <!--Manage Complaints-->
         <li class="menu-list">
           <a href="#"><i class="fa fa-edit"></i>
             <span>Complaint <i class="lnr lnr-chevron-right"></i></span></a>
           <ul class="sub-menu-list">
             <li><a href="{{ route('my_complaint') }}">Manage my complaints</a></li>
-            <li><a href="{{ route('complaint.create') }}">New complain</a></li>
+            <li><a href="{{ route('complaint.create') }}">New complaint</a></li>
           </ul>
         </li>
-        @endcan
-
-        <!-- check if user can crud complaints approval -->
-        @can('create', App\Models\Complaint::class)
-        <!-- Complaints Approval -->
-        <li class="active"><a href="{{ route('complaint.index') }}"><i class="fa fa-file-text"></i> <span>Complaint approval</span></a></li>
-        
-        @endcan
 
         <!-- check if user can crud unit approval-->
        
-        <!-- Complaints Approval -->
+        <!-- Unit Complaints Approval -->
+        @can('unit_complaints')
         <li class="active"><a href="{{ route('unit_complaints') }}"><i class="fa fa-file-text"></i> <span>Unit Complaints</span></a></li>
+        @endcan
+
+        <!-- Job assigned -->
+        @can('assign_techincician')
+        <li class="active"><a href="{{ route('job_assigned') }}"><i class="fa fa-file-text"></i> <span>Assigned Job</span></a></li>
+        @endcan
         
         <!-- check if user can crud all complaints-->
-        @can('create', App\Models\Complaint::class)
+        @can('viewAny', App\Models\Complaint::class)
         <!-- Complaints Approval -->
         <li class="active"><a href="{{ route('complaint.index') }}"><i class="fa fa-file-text"></i> <span>All Complaints</span></a></li>
         
         @endcan
 
         <!-- check if user can crud assigned complaints-->
-        @can('create', App\Models\Complaint::class)
+        @can('assigned_complaints')
         <!-- Complaints Approval -->
-        <li class="active"><a href="{{ route('complaint.index') }}"><i class="fa fa-file-text"></i> <span>Assigned complaints</span></a></li>
+        <li class="active"><a href="{{ route('assigned_complaints') }}"><i class="fa fa-file-text"></i> <span>Assigned complaints</span></a></li>
+        @endcan
+
+        <!-- check if user can crud room complaints-->
+        @can('approve_room_complaints')
+        <!-- Room Complaints -->
+        <li class="active"><a href="{{ route('room_complaint') }}"><i class="fa fa-file-text"></i> <span>Room complaints</span></a></li>
+        @endcan
+
+        <!-- check if user can crud facility complaints-->
+        @can('approve_facility_complaints')
+        <!-- Facility Complaints -->
+        <li class="active"><a href="{{ route('facility_complaint') }}"><i class="fa fa-file-text"></i> <span>Facility complaints</span></a></li>
+        @endcan
+
+        <!-- check material -->
+        @can('create', App\Models\Material::class)
+        <!-- Material Approval -->
+        <li class="active"><a href="{{ route('material_approval') }}"><i class="fa fa-file-text"></i> <span>Material Approval</span></a></li>
         @endcan
        
       </ul>
@@ -298,7 +311,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="dropdownMenu3" aria-haspopup="true"
                   aria-expanded="false">
                   <div class="profile_img">
-                    <img src="{{ asset('images/people1.png') }}" class="rounded-circle" alt="" />
+                    <img src="{{ asset('images/user.png') }}" class="rounded-circle" alt="" />
                     <div class="user-active">
                       <span></span>
                     </div>

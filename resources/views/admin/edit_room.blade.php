@@ -31,7 +31,7 @@
                    
                     <div class="form-group">
                         <label for="inputLocationofRoom" class="input__label">Head of Facility</label>
-                        <select id="inputLocationofRoom" class="form-control input-style" name="user_id">
+                        <select id="inputLocationofRoom" class="form-control input-style" name="facility_id">
                             <option selected>-- Select Location of Room </option>
                             @foreach ($facilities as $facility)
                                 <option value="{{ $facility->id }}" @if($facility->id == $room->facility_id) selected @endif>{{ $facility->name }}</option>

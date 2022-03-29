@@ -7,7 +7,7 @@
     <nav aria-label="breadcrumb" class="mb-4">
         <ol class="breadcrumb my-breadcrumb">
             <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Add Job</li>
+            <li class="breadcrumb-item active" aria-current="page">All Jobs</li>
         </ol>
     </nav>
     <!-- //breadcrumbs -->
@@ -26,7 +26,7 @@
                   <thead>
                     <tr>
                       <th>Nature of Job</th>
-                      <th>Unit</th>
+                      <th>User Role</th>
                       <th>Edit</th>
                       <th>Delete</th>
                       
@@ -37,7 +37,7 @@
                       <tr>
                           
                           <td>{{ $job->name }}</td>
-                          <td>{{ $job->unit->name }}</td>
+                          <td>{{ isset($job->role) ? $job->role->title : "" }}</td>
                           <td><a href="{{ route('job.edit', $job->id) }}">Edit</a></td>
                           <td><form action="{{ route('job.destroy', $job->id) }}" method="POST">@method('delete') @csrf <button type="submit"> <i class="material-icons">delete</i></button></form></td>
                     

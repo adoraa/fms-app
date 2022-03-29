@@ -20,6 +20,7 @@ class FacilityPolicy
     public function viewAny(User $user)
     {
         //
+        return in_array($user->role_id, [Role::IS_ESTATE_MANAGER, Role::IS_FACILITY_MANAGER]);
     }
 
     /**

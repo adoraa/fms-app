@@ -22,4 +22,8 @@ class Room extends Model
     public function head_of_room(){
         return $this->belongsTo('App\Models\User', 'user_id', 'id');
     }
+
+    public function users(){
+        return $this->hasMany('App\Models\User');
+    }
 }

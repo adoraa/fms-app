@@ -17,17 +17,22 @@ class Role extends Model
     public const IS_STORE_MANAGER = 11;
     public const IS_STAFF = 6;
     public const IS_STUDENT = 7;
-    public const IS_ELECTRICIAN = 10;
-    public const IS_PLUMBER = 12;
-    public const IS_WELDER = 13;
-    public const IS_CARPENTER = 14;
+    public const IS_ELECTRICAL = 10;
+    public const IS_WATER_AND_SEWAGE = 12;
+    public const IS_MECHANICAL = 13;
+    public const IS_WOOD_WORKS = 14;
+    public const IS_CIVIL = 17;
 
     public static function list()
     {
         return static::all()->pluck('id', 'title');
     }
 
-    public function unit(){
-        return $this->hasOne('App\Models\Unit');
+    public function jobs(){
+        return $this->hasMany('App\Models\Job');
+    }
+
+    public function users(){
+        return $this->hasMany('App\Models\User');
     }
 }
