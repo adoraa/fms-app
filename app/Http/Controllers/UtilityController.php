@@ -80,6 +80,11 @@ class UtilityController extends Controller
     public function edit(Utility $utility)
     {
         //
+        $facilities = Facility::orderBy('name')->get();
+        $categories = Category::orderBy('name')->get();
+        $rooms = Room::orderBy('name')->get();
+        return view('admin.edit_utility', compact(['utility', 'facilities', 'categories', 'rooms']))
+        ;
     }
 
     /**
@@ -92,6 +97,21 @@ class UtilityController extends Controller
     public function update(Request $request, Utility $utility)
     {
         //
+        request()->validate([
+            'name' => ['required'],
+            'facility_id' => ['required'],
+            'category_id' => ['required'],
+            'room_id' => ['required']
+        ]);
+
+        $utility->name = $request->name;
+        $utility->facility_id = $request->facility_id;
+        $utility->category_id = $request->category_id;
+        $utility->room_id = $request->room_id;
+        $utility->save();
+
+        session()->flash('success', 'Utility updated successfully');
+        return redirect()->route('utility.index');
     }
 
     /**
@@ -103,5 +123,8 @@ class UtilityController extends Controller
     public function destroy(Utility $utility)
     {
         //
+        $utility->delete();
+        session()->flash('success', $utility->name.' has been deleted successfully');
+        return back();
     }
 }

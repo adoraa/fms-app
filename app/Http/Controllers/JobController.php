@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\job;
-use App\Models\unit;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class JobController extends Controller
@@ -28,8 +28,8 @@ class JobController extends Controller
     public function create()
     {
         //
-        $units = Unit::orderBy('name')->get();
-        return view('admin.create_job', compact(['units']));
+        $roles = Role::orderBy('title')->get();
+        return view('admin.create_job', compact(['roles']));
     }
 
     /**
@@ -43,7 +43,7 @@ class JobController extends Controller
         //
         Job::create(request()->validate([
             'name' => ['required', 'unique:jobs,name'],
-            'unit_id' => ['required']
+            'role_id' => ['required']
         ]));
         session()->flash('success', 'Job created successfully');
         return redirect()->route('job.index');
@@ -69,8 +69,8 @@ class JobController extends Controller
     public function edit(job $job)
     {
         //
-        $units = Unit::orderBy('name')->get();
-        return view('admin.edit_job', compact(['job', 'units']));
+        $roles = Role::orderBy('title')->get();
+        return view('admin.edit_job', compact(['job', 'roles']));
     }
 
     /**
@@ -85,11 +85,11 @@ class JobController extends Controller
         //
         request()->validate([
             'name' => ['required'],
-            'unit_id' => ['required']
+            'role_id' => ['required']
         ]);
 
         $job->name = $request->name;
-        $job->unit_id = $request->unit_id;
+        $job->role_id = $request->role_id;
         $job->save();
 
         session()->flash('success', 'Job updated successfully');

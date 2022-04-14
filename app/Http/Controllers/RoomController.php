@@ -77,7 +77,7 @@ class RoomController extends Controller
         //
         $facilities = Facility::orderBy('name')->get();
         $users = User::orderBy('surname')->orderBy('firstname')->get();
-        return view('admin.edit_room', compact(['room', 'facility', 'users']));
+        return view('admin.edit_room', compact(['room', 'facilities', 'users']));
     }
 
     /**

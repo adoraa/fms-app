@@ -44,9 +44,6 @@ class ComplaintPolicy
     public function create(User $user)
     {
         //
-        return in_array($user->role_id, [Role::IS_FACILITY_MANAGER, Role::IS_ESTATE_MANAGER,
-        Role::IS_STAFF, Role::IS_STUDENT, Role::IS_STORE_MANAGER, Role::IS_ELECTRICIAN,
-        Role::IS_PLUMBER, Role::IS_WELDER, Role::IS_CARPENTER]);
     }
 
     /**
@@ -59,9 +56,6 @@ class ComplaintPolicy
     public function update(User $user, Complaint $complaint)
     {
         //
-        return in_array($user->role_id, [Role::IS_FACILITY_MANAGER, Role::IS_ESTATE_MANAGER,
-        Role::IS_STAFF, Role::IS_STUDENT, Role::IS_STORE_MANAGER, Role::IS_ELECTRICIAN,
-        Role::IS_PLUMBER, Role::IS_WELDER, Role::IS_CARPENTER]);
     }
 
     /**
@@ -74,9 +68,6 @@ class ComplaintPolicy
     public function delete(User $user, Complaint $complaint)
     {
         //
-        return in_array($user->role_id, [Role::IS_FACILITY_MANAGER, Role::IS_ESTATE_MANAGER,
-        Role::IS_STAFF, Role::IS_STUDENT, Role::IS_STORE_MANAGER, Role::IS_ELECTRICIAN,
-        Role::IS_PLUMBER, Role::IS_WELDER, Role::IS_CARPENTER]);
     }
 
     /**
@@ -101,8 +92,5 @@ class ComplaintPolicy
     public function forceDelete(User $user, Complaint $complaint)
     {
         //
-        return in_array($user->role_id, [Role::IS_FACILITY_MANAGER, Role::IS_ESTATE_MANAGER, 
-        Role::IS_STAFF, Role::IS_STUDENT, Role::IS_STORE_MANAGER, Role::IS_ELECTRICIAN,
-        Role::IS_PLUMBER, Role::IS_WELDER, Role::IS_CARPENTER]);
     }
 }

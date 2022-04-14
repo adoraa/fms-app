@@ -7,12 +7,15 @@
     <nav aria-label="breadcrumb" class="mb-4">
         <ol class="breadcrumb my-breadcrumb">
             <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Create Category</li>
+            <li class="breadcrumb-item active" aria-current="page">All Categories</li>
         </ol>
     </nav>
     <!-- //breadcrumbs -->
     <!-- forms -->
     <section class="forms">
+
+    <!-- click button -->
+    <a href="{{ route('category.create') }}" class="btn btn-primary">New</a><br/><br/>
 
     <!-- data tables -->
     <div class="data-tables">

@@ -50,8 +50,20 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Complaint');
     }
 
-    public function Room(){
-        return $this->hasMany('App\Models\Room');
+    public function rooms(){
+        return $this->hasMany('App\Models\Room', 'user_id', 'id');
+    }
+
+    public function facilities(){
+        return $this->hasMany('App\Models\Facility', 'user_id', 'id');
+    }
+
+    public function room(){
+        return $this->belongsTo('App\Models\Room');
+    }
+
+    public function assigned_complaints(){
+        return $this->hasMany('App\Models\Complaint', 'user_assigned', 'id');
     }
 
 }
