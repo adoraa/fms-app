@@ -30,6 +30,51 @@
                     </div>
                     <div class="card-body">
                       <div class="timeline">
+
+                        @if ($complaint->time_job_rated != null)
+                        <div class="entry">
+                          <div class="title">
+                            <?php $approved_date = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', $complaint->time_job_rated);?>
+                            <h3>{{ \Carbon\Carbon::parse($complaint->time_job_rated)->diffForHumans(); }}</h3>
+                          </div>
+                          <div class="body">
+                            <h4 class="card__title">{{ $complaint->user->firstname }} {{ $complaint->user->surname }}</h4>
+                            
+                            <p>Job reviewed</p>
+
+                          </div>
+                        </div>
+                        @endif
+
+                        @if ($complaint->time_job_completed != null)
+                        <div class="entry">
+                          <div class="title">
+                            <?php $approved_date = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', $complaint->time_job_completed);?>
+                            <h3>{{ \Carbon\Carbon::parse($complaint->time_job_completed)->diffForHumans(); }}</h3>
+                          </div>
+                          <div class="body">
+                            <h4 class="card__title">{{ $complaint->assigned_user->firstname }} {{ $complaint->assigned_user->surname }}</h4>
+                            
+                            <p>Job completed</p>
+
+                          </div>
+                        </div>
+                        @endif
+
+                        @if ($complaint->time_reached != null)
+                        <div class="entry">
+                          <div class="title">
+                            <?php $approved_date = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', $complaint->time_reached);?>
+                            <h3>{{ \Carbon\Carbon::parse($complaint->time_reached)->diffForHumans(); }}</h3>
+                          </div>
+                          <div class="body">
+                            <h4 class="card__title">{{ $complaint->assigned_user->firstname }} {{ $complaint->assigned_user->surname }}</h4>
+                            
+                            <p>Technician arrived</p>
+
+                          </div>
+                        </div>
+                        @endif
                 
                         @if ($complaint->material_gotten != null)
                             <div class="entry">

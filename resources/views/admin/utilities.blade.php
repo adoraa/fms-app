@@ -31,9 +31,10 @@
                       <th>Utility</th>
                       <th>Location</th>
                       <th>Category</th>
+                      @can('create', App\Models\Utility::class)
                       <th>Edit</th>
                       <th>Delete</th>
-                      
+                      @endcan
                     </tr>
                   </thead>
                   <tbody>
@@ -43,9 +44,10 @@
                           <td>{{ $utility->name }}</td>
                           <td>{{ $utility->facility->name }}</td>
                           <td>{{ $utility->category->name }}</td>
-                          <td><a href="{{ route('utility.edit', $utility->id) }}">Edit</a></td>
-                          <td><form action="{{ route('utility.destroy', $utility->id) }}" method="POST">@method('delete') @csrf <button type="submit"> <i class="material-icons">delete</i></button></form></td>
-                    
+                          @can('update', $utility)
+                            <td><a href="{{ route('utility.edit', $utility->id) }}">Edit</a></td>
+                            <td><form action="{{ route('utility.destroy', $utility->id) }}" method="POST">@method('delete') @csrf <button type="submit"> <i class="material-icons">delete</i></button></form></td>
+                          @endcan
                       </tr>
                     @endforeach
                   

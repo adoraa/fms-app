@@ -111,7 +111,7 @@ class ComplaintController extends Controller
         $complaint->save();
 
         session()->flash('success', 'Report updated successfully');
-        return redirect()->route('complaint.index');
+        return redirect()->route('my_complaint');
     }
 
     /**
@@ -212,6 +212,8 @@ class ComplaintController extends Controller
     public function review(int $complaint_id)
     {
         $complaint = Complaint::where('id', $complaint_id)->first();
+        $complaint->time_job_rated = Carbon::now();
+        $complaint->save();
      
         return view('admin.review', compact('complaint'));
     }

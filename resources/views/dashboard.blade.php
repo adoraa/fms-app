@@ -209,7 +209,7 @@
               <div class="card card_border border-primary-top p-4">
                 <i class="lnr lnr-cog"> </i>
                 <h3 class="text-secondary number">{{ $num_utilities }}</h3>
-                <p class="stat-text"><a href="">Utilities</a></p>
+                <p class="stat-text"><a href="{{ route('utility.index') }}">Utilities</a></p>
               </div>
             </div>
           </div>
